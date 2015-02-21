@@ -36,6 +36,9 @@ function __parse_arguments {
 
     if [ "${2:-}" == "--use-cache" ]; then
       cache=true
+      if [ -n "#{3:-}" ] ; then
+        cache_directory="$3"
+      fi
     else
       cache=false
     fi
