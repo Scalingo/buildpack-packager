@@ -7,7 +7,6 @@ temp_directory=/tmp/_make_buildpack
 if [ "$(uname)" == "Darwin" ]; then
     cache_directory="$(getconf DARWIN_USER_CACHE_DIR)/buildpack-packager"
 elif [ "$(uname)" == "Linux" ]; then
-    mkdir -p ~/.buildpack-packager/cache
     cache_directory=~/.buildpack-packager/cache
 fi
 
@@ -39,6 +38,7 @@ function __parse_arguments {
       if [ $number_of_arguments -eq 3 -a -n "#{3:-}" ] ; then
         cache_directory="$3"
       fi
+      mkdir -p "${cache_directory}"
     else
       cache=false
     fi
